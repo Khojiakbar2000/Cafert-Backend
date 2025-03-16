@@ -16,10 +16,25 @@
 
 console.log(getHighestIndex([5, 21, 12, 21, 8]))*/
 
-function getPositive(arr:number[]):string{
+//TASK H:
+/*function getPositive(arr:number[]):string{
     return arr
     .filter((num:number) =>num > 0)
     .join("")
 }
 
-console.log(getPositive([1, -4, 2]))
+console.log(getPositive([1, -4, 2]))*/
+
+//TASK I
+function majorityElement(arr:number[]):number|null{
+    const countMap = new Map<number, number>();
+
+    for (let num of arr){
+        countMap.set(num, (countMap.get(num)||0) + 1);
+    }
+
+    return [...countMap.entries()].reduce((a,b)=>(b[1]>a[1]? b : a))[0]
+
+}
+
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))
