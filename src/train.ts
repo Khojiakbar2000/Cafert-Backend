@@ -26,7 +26,7 @@ console.log(getHighestIndex([5, 21, 12, 21, 8]))*/
 console.log(getPositive([1, -4, 2]))*/
 
 //TASK I
-function majorityElement(arr:number[]):number|null{
+/*function majorityElement(arr:number[]):number|null{
     const countMap = new Map<number, number>();
 
     for (let num of arr){
@@ -37,4 +37,18 @@ function majorityElement(arr:number[]):number|null{
 
 }
 
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))*/
+
+//TASK J
+function findLongestWord(sentence: string): string {
+    const words = sentence.split(" ");
+    let longestWord = "";
+
+    for (let word of words) {
+        if (word.length > longestWord.length){
+            longestWord = word;
+        }
+    }
+    return longestWord;
+}
+console.log(findLongestWord("I come from Uzbekistan"))
