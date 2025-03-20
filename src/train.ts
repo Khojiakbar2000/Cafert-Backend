@@ -40,7 +40,7 @@ console.log(getPositive([1, -4, 2]))*/
 console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))*/
 
 //TASK J
-function findLongestWord(sentence: string): string {
+/*function findLongestWord(sentence: string): string {
     const words = sentence.split(" ");
     let longestWord = "";
 
@@ -51,4 +51,11 @@ function findLongestWord(sentence: string): string {
     }
     return longestWord;
 }
-console.log(findLongestWord("I come from Uzbekistan"))
+console.log(findLongestWord("I come from Uzbekistan"))*/
+
+//TASK H2
+function getDigits (input: string): string{
+return input.split("").filter(char=>/\d/.test(char)).join("")
+}
+
+console.log(getDigits("m14i1t"));
