@@ -54,8 +54,16 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4]))*/
 console.log(findLongestWord("I come from Uzbekistan"))*/
 
 //TASK H2
-function getDigits (input: string): string{
+/*function getDigits (input: string): string{
 return input.split("").filter(char=>/\d/.test(char)).join("")
 }
 
-console.log(getDigits("m14i1t"));
+console.log(getDigits("m14i1t"));*/
+
+//MITASK-K
+function countVowels(s: string): number {
+    const vowels = "aeiouAEIOU";
+    return s.split("").filter(char=>vowels.includes(char)).length;
+}
+
+console.log(countVowels("string"));
