@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { T } from "../libs/types/common"; 
 import MemberService from "../models/Member.service"; 
 import { MemberInput, LoginInput, AdminRequest } from "../libs/types/member"; 
+import {Message} from "../libs/Errors";
 
 
 import { MemberType } from "../libs/enums/member.enum";
@@ -79,5 +80,21 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     res.send(err);
   }
 };
+
+
+
+restaurantController.checkAuthSession = async (
+    req: AdminRequest, 
+    res: Response
+     ) => {
+    try {
+      console.log("checkAuthSession");
+      if(req.session?.member) res.send (`<script> alert("${req.session.member.memberNick}")</script>`);
+      else res.send(`<script> alert("${Message.NOT_AUTHENTICATED}")</script>`)
+       } catch (err) {
+      console.log("Error processLogin", err);
+      res.send(err);
+    }
+  };
 
 export default restaurantController;
