@@ -61,9 +61,19 @@ return input.split("").filter(char=>/\d/.test(char)).join("")
 console.log(getDigits("m14i1t"));*/
 
 //MITASK-K
-function countVowels(s: string): number {
+/*function countVowels(s: string): number {
     const vowels = "aeiouAEIOU";
     return s.split("").filter(char=>vowels.includes(char)).length;
 }
 
-console.log(countVowels("string"));
+console.log(countVowels("string"));*/
+
+//MITASK-L
+function reverseSentence(sentence:string):string{
+return sentence
+.split(" ")
+.map(word=>word.split("").reverse().join(""))
+.join(" ");
+}
+
+console.log(reverseSentence("we like coding"))
