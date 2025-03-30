@@ -69,11 +69,22 @@ console.log(getDigits("m14i1t"));*/
 console.log(countVowels("string"));*/
 
 //MITASK-L
-function reverseSentence(sentence:string):string{
+/*function reverseSentence(sentence:string):string{
 return sentence
 .split(" ")
 .map(word=>word.split("").reverse().join(""))
 .join(" ");
 }
 
-console.log(reverseSentence("we like coding"))
+console.log(reverseSentence("we like coding"))*/
+
+//MITASK M
+function getSquareNumbers(numbers: number[]): {
+    number: number , square: number }[]{
+    return numbers.map(num=>({
+        number: num,
+        square: num * num
+    }))
+}
+
+console.log(getSquareNumbers([1,2, 3]))
