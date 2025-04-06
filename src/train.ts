@@ -79,7 +79,7 @@ return sentence
 console.log(reverseSentence("we like coding"))*/
 
 //MITASK M
-function getSquareNumbers(numbers: number[]): {
+/*function getSquareNumbers(numbers: number[]): {
     number: number , square: number }[]{
     return numbers.map(num=>({
         number: num,
@@ -87,4 +87,18 @@ function getSquareNumbers(numbers: number[]): {
     }))
 }
 
-console.log(getSquareNumbers([1,2, 3]))
+console.log(getSquareNumbers([1,2, 3]))*/
+//MITASK-O
+function calculateSumOfNumbers(arr: any[]): number {
+    let sum = 0;
+
+    for (const item of arr) {
+        if(typeof item === "number"){
+            sum += item;
+        }
+    }
+
+    return sum;
+}
+
+console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35]));
