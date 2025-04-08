@@ -89,7 +89,7 @@ console.log(reverseSentence("we like coding"))*/
 
 console.log(getSquareNumbers([1,2, 3]))*/
 //MITASK-O
-function calculateSumOfNumbers(arr: any[]): number {
+/*function calculateSumOfNumbers(arr: any[]): number {
     let sum = 0;
 
     for (const item of arr) {
@@ -101,4 +101,12 @@ function calculateSumOfNumbers(arr: any[]): number {
     return sum;
 }
 
-console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35]));
+console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35]));*/
+
+//MITASK-P
+
+function objectToArray(obj: Record<string, any>): [string, any][]{
+    return Object.keys(obj).map(key=>[key, obj[key]]);
+}
+
+console.log(objectToArray({ a: 10, b:20}));
