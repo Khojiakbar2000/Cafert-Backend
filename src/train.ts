@@ -105,8 +105,16 @@ console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35]));*/
 
 //MITASK-P
 
-function objectToArray(obj: Record<string, any>): [string, any][]{
+/*function objectToArray(obj: Record<string, any>): [string, any][]{
     return Object.keys(obj).map(key=>[key, obj[key]]);
 }
 
-console.log(objectToArray({ a: 10, b:20}));
+console.log(objectToArray({ a: 10, b:20}));*/
+
+//MITASK-Q
+function hasProperty(obj: object, key: string): boolean {
+    return Object.keys(obj).includes(key);
+}
+
+console.log(hasProperty({name: "BMW", model: "M3"}, "model"));
+console.log(hasProperty({name: "BMW", model: "M3"}, "year"));
