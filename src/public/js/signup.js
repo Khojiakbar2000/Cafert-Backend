@@ -33,7 +33,11 @@ function validateSignupForm() {
     const memberPhone = $(".member-phone").val();
     const memberPassword = $(".member-password").val();
     const confirmPassword = $(".confirm-password").val();
-    if(memberNick === "" || memberPhone === "" || memberPassword === "" || confirmPassword === "" 
+    if(
+        memberNick === "" ||
+         memberPhone === "" || 
+         memberPassword === "" || 
+         confirmPassword === "" 
 
     ){
         alert("Please insert all required inputs!");
@@ -44,7 +48,8 @@ function validateSignupForm() {
         return false;
     }
 
-    const memberImage = $(".member-image").get(0).files[0] ? $(".member-image").get(0).files[0].name 
+    const memberImage = $(".member-image").get(0).files[0] 
+    ? $(".member-image").get(0).files[0].name 
     : null;
     if(!memberImage){
         alert("Please insert restaurant image!");
