@@ -112,9 +112,18 @@ console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35]));*/
 console.log(objectToArray({ a: 10, b:20}));*/
 
 //MITASK-Q
-function hasProperty(obj: object, key: string): boolean {
+/*function hasProperty(obj: object, key: string): boolean {
     return Object.keys(obj).includes(key);
 }
 
 console.log(hasProperty({name: "BMW", model: "M3"}, "model"));
-console.log(hasProperty({name: "BMW", model: "M3"}, "year"));
+console.log(hasProperty({name: "BMW", model: "M3"}, "year"));*/
+
+//MITASK-R
+
+function calculate(expression: string): number{
+    const [a, b] = expression.split("+").map(Number);
+    return a + b;
+}
+
+console.log(calculate("50+50"));
