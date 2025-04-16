@@ -121,9 +121,19 @@ console.log(hasProperty({name: "BMW", model: "M3"}, "year"));*/
 
 //MITASK-R
 
-function calculate(expression: string): number{
+/*function calculate(expression: string): number{
     const [a, b] = expression.split("+").map(Number);
     return a + b;
 }
 
-console.log(calculate("50+50"));
+console.log(calculate("50+50"));*/
+
+//MITASK-S
+function missingNumber(arr: number[]): number{
+    const n : number = arr.length;
+    const expectedSum: number = (n * (n+1)) /2;
+    const actualSum: number = arr.reduce((acc, num)=> acc + num, 0);
+    return expectedSum - actualSum;
+}
+
+console.log(missingNumber([3,0,1]));
