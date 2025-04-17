@@ -129,11 +129,18 @@ console.log(hasProperty({name: "BMW", model: "M3"}, "year"));*/
 console.log(calculate("50+50"));*/
 
 //MITASK-S
-function missingNumber(arr: number[]): number{
+/*function missingNumber(arr: number[]): number{
     const n : number = arr.length;
     const expectedSum: number = (n * (n+1)) /2;
     const actualSum: number = arr.reduce((acc, num)=> acc + num, 0);
     return expectedSum - actualSum;
 }
 
-console.log(missingNumber([3,0,1]));
+console.log(missingNumber([3,0,1]));*/
+
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[]{
+    const merged = [...arr1, ...arr2];
+    return merged.sort((a, b)=> a-b);
+}
+
+console.log(mergeSortedArrays([0, 3 , 4, 31], [4, 6, 30]));
