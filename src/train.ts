@@ -138,9 +138,23 @@ console.log(calculate("50+50"));*/
 
 console.log(missingNumber([3,0,1]));*/
 
-function mergeSortedArrays(arr1: number[], arr2: number[]): number[]{
+//MITASK-T
+/*function mergeSortedArrays(arr1: number[], arr2: number[]): number[]{
     const merged = [...arr1, ...arr2];
     return merged.sort((a, b)=> a-b);
 }
 
-console.log(mergeSortedArrays([0, 3 , 4, 31], [4, 6, 30]));
+console.log(mergeSortedArrays([0, 3 , 4, 31], [4, 6, 30]));*/
+
+//MITASK-U
+function sumOdds(n: number):number{
+let count = 0;
+
+for (let i = 1; i < n; i += 2){
+    count++
+}
+return count;
+
+}
+
+console.log(sumOdds(9));
