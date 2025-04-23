@@ -147,7 +147,7 @@ console.log(missingNumber([3,0,1]));*/
 console.log(mergeSortedArrays([0, 3 , 4, 31], [4, 6, 30]));*/
 
 //MITASK-U
-function sumOdds(n: number):number{
+/*function sumOdds(n: number):number{
 let count = 0;
 
 for (let i = 1; i < n; i += 2){
@@ -157,4 +157,16 @@ return count;
 
 }
 
-console.log(sumOdds(9));
+console.log(sumOdds(9));*/
+
+//TASK-V
+function countChars(str: string): Record<string, number>{
+    const result: Record<string, number> ={};
+
+    for (const char of str) {
+        result[char] = (result[char] || 0) + 1;
+    }
+    return result;
+}
+console.log(countChars("hello"))
+
