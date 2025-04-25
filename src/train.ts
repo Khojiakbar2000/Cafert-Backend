@@ -160,7 +160,7 @@ return count;
 console.log(sumOdds(9));*/
 
 //TASK-V
-function countChars(str: string): Record<string, number>{
+/*function countChars(str: string): Record<string, number>{
     const result: Record<string, number> ={};
 
     for (const char of str) {
@@ -168,5 +168,17 @@ function countChars(str: string): Record<string, number>{
     }
     return result;
 }
-console.log(countChars("hello"))
+console.log(countChars("hello"))*/
+
+//TASK-W
+
+function chunkArray<T>(arr: T[], size: number): T[][]{
+    const result: T[][] = [];
+    for (let i = 0; i < arr.length; i += size) {
+        result.push(arr.slice(i, i + size));
+    }
+    return result;
+}
+
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))
 
