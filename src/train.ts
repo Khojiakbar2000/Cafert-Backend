@@ -172,7 +172,7 @@ console.log(countChars("hello"))*/
 
 //TASK-W
 
-function chunkArray<T>(arr: T[], size: number): T[][]{
+/*function chunkArray<T>(arr: T[], size: number): T[][]{
     const result: T[][] = [];
     for (let i = 0; i < arr.length; i += size) {
         result.push(arr.slice(i, i + size));
@@ -180,5 +180,32 @@ function chunkArray<T>(arr: T[], size: number): T[][]{
     return result;
 }
 
-console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))
+console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
+
+//MITASK-X
+
+function countOccurrences(obj:any, key: string): number{
+  let count = 0;
+  function search(current : any){
+    if(typeof current === 'object' && current !== null){
+        for (let k in current){
+            if (k === key) count ++;
+            search(current[k]);
+        }
+    }
+  }
+  search(obj);
+  return count;
+  }
+
+  const data = {
+    model : 'Bugatti',
+    steer: {
+        model: 'HANKOOK',
+        size: 30
+    }
+  }
+
+  console.log(countOccurrences(data, 'model'));
+  
 
