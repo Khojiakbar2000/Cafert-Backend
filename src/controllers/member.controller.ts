@@ -26,7 +26,7 @@ memberController.signup = async (req: Request, res: Response) => {
   res.status(HttpCode.CREATED).json({ member: result, accessToken: token });
    
 
-    res.json({ member: result });
+  
   } catch (err) {
     console.log("Error, signup", err);
     if(err instanceof Errors) res.status(err.code).json(err)
