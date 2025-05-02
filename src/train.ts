@@ -184,7 +184,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
 //MITASK-X
 
-function countOccurrences(obj:any, key: string): number{
+/*function countOccurrences(obj:any, key: string): number{
   let count = 0;
   function search(current : any){
     if(typeof current === 'object' && current !== null){
@@ -206,6 +206,14 @@ function countOccurrences(obj:any, key: string): number{
     }
   }
 
-  console.log(countOccurrences(data, 'model'));
+  console.log(countOccurrences(data, 'model'));*/
+
+  //TASK-Y
+
+  function findIntersection(arr1: number[], arr2: number[]): number[]{
+    return arr1.filter((value)=> arr2.includes(value));
+  }
+
+  console.log(findIntersection([1, 2, 3], [3, 2, 0]))
   
 
