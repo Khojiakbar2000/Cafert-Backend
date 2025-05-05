@@ -210,10 +210,21 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //TASK-Y
 
-  function findIntersection(arr1: number[], arr2: number[]): number[]{
+  /*function findIntersection(arr1: number[], arr2: number[]): number[]{
     return arr1.filter((value)=> arr2.includes(value));
   }
 
-  console.log(findIntersection([1, 2, 3], [3, 2, 0]))
+  console.log(findIntersection([1, 2, 3], [3, 2, 0]))*/
+
+  //TASK-Z
+  
+
+  function sumEvens(arr:number[]): number {
+    return arr.filter(num => num % 2 === 0).reduce((acc, curr)=> acc + curr, 0);
+  }
+
+  console.log(sumEvens([1 , 2, 3, 2]))
+
+
   
 
