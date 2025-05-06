@@ -219,11 +219,18 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
   //TASK-Z
   
 
-  function sumEvens(arr:number[]): number {
+  /*function sumEvens(arr:number[]): number {
     return arr.filter(num => num % 2 === 0).reduce((acc, curr)=> acc + curr, 0);
   }
 
-  console.log(sumEvens([1 , 2, 3, 2]))
+  console.log(sumEvens([1 , 2, 3, 2]))*/
+
+  //TASK-ZA
+  function sortByAge(arr:{age: number}[]): {age: number}[] {
+    return arr.sort((a, b)=> a.age - b.age)
+    }
+  
+    console.log(sortByAge([{age:23}, {age:21}, {age:13}]));
 
 
   
