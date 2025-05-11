@@ -234,11 +234,22 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
     //TASK ZB
 
-    function randomBetween(min: number, max:number): number{
+    /*function randomBetween(min: number, max:number): number{
      return Math.floor(Math.random()*(max-min+1))+min;
     }
 
-    console.log(randomBetween(100,50))
+    console.log(randomBetween(100,50))*/
+
+    //TASK-ZD
+
+    function changeNumberInArray(index: number, arr: number[], newValue: number): number[]{
+        if(index >= 0 && index < arr.length){
+            arr[index] = newValue;
+        }
+        return arr;
+    }
+
+    console.log(changeNumberInArray(1,[1, 3, 7, 2], 2));
 
 
   
