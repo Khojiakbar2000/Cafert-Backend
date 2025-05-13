@@ -242,14 +242,29 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
     //TASK-ZD
 
-    function changeNumberInArray(index: number, arr: number[], newValue: number): number[]{
+    /*function changeNumberInArray(index: number, arr: number[], newValue: number): number[]{
         if(index >= 0 && index < arr.length){
             arr[index] = newValue;
         }
         return arr;
     }
 
-    console.log(changeNumberInArray(1,[1, 3, 7, 2], 2));
+    console.log(changeNumberInArray(1,[1, 3, 7, 2], 2));*/
+
+    //ZE-TASK
+
+   function removeDuplicate(str: string): string{
+    let result = '';
+    for (let char of str){
+        if(!result.includes(char)){
+            result += char;
+
+        }
+    }
+    return result;
+   }
+
+   console.log(removeDuplicate('string'));
 
 
   
