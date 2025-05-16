@@ -253,7 +253,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
     //ZE-TASK
 
-   function removeDuplicate(str: string): string{
+   /*function removeDuplicate(str: string): string{
     let result = '';
     for (let char of str){
         if(!result.includes(char)){
@@ -264,8 +264,31 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
     return result;
    }
 
-   console.log(removeDuplicate('string'));
+   console.log(removeDuplicate('string'));*/
 
+   //ZF-TASK
+
+   function capitalizeWords(sentence: string): string {
+    return sentence 
+    .split(' ')
+    .map(word => {
+        if (word.length > 2) {
+            return word[0].toUpperCase() + word.slice(1);
+        }
+        return word;
+    })
+    .join(' ');
+   }
+
+   console.log(capitalizeWords('name should be a string'))
+
+  
+
+
+   
+
+   
+    
 
   
 
