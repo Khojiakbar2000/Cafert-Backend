@@ -268,7 +268,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
    //ZF-TASK
 
-   function capitalizeWords(sentence: string): string {
+   /*function capitalizeWords(sentence: string): string {
     return sentence 
     .split(' ')
     .map(word => {
@@ -280,7 +280,19 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
     .join(' ');
    }
 
-   console.log(capitalizeWords('name should be a string'))
+   console.log(capitalizeWords('name should be a string'))*/
+
+   //ZG-TASK
+
+  function toSnakeCase (input: string):string{
+    if(typeof input !== 'string') return '';
+    return input 
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '_');
+  }
+   
+  console.log(toSnakeCase('name should be a string'))
 
   
 
