@@ -284,7 +284,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
    //ZG-TASK
 
-  function toSnakeCase (input: string):string{
+ /* function toSnakeCase (input: string):string{
     if(typeof input !== 'string') return '';
     return input 
     .trim()
@@ -292,7 +292,20 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
     .replace(/\s+/g, '_');
   }
    
-  console.log(toSnakeCase('name should be a string'))
+  console.log(toSnakeCase('name should be a string'))*/
+
+  //ZH-TASK
+
+  function findDisappearedNumbers(arr: number[]): number[]{
+   const max = Math.max(...arr);
+   const full = new Set(Array.from({length: max}, (_, i)=>i + 1));
+   for(const num of arr){
+    full.delete(num)
+   }
+   return Array.from(full)
+  }
+
+  console.log(findDisappearedNumbers([1, 3, 4, 7]))
 
   
 
