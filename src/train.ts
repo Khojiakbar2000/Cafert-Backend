@@ -296,7 +296,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //ZH-TASK
 
-  function findDisappearedNumbers(arr: number[]): number[]{
+  /*function findDisappearedNumbers(arr: number[]): number[]{
    const max = Math.max(...arr);
    const full = new Set(Array.from({length: max}, (_, i)=>i + 1));
    for(const num of arr){
@@ -305,7 +305,25 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
    return Array.from(full)
   }
 
-  console.log(findDisappearedNumbers([1, 3, 4, 7]))
+  console.log(findDisappearedNumbers([1, 3, 4, 7]))*/
+
+  //ZI-TASK
+
+  function delayHelloWorld(): Promise<string>{
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve("Hello World");
+        
+        }, 3000)
+    });
+  }
+
+  async function showHelloWorld(){
+    const result = await delayHelloWorld()
+    console.log(result)
+  }
+
+  showHelloWorld();
 
   
 
