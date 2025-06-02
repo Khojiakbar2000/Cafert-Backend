@@ -309,7 +309,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //ZI-TASK
 
-  function delayHelloWorld(): Promise<string>{
+  /*function delayHelloWorld(): Promise<string>{
     return new Promise((resolve)=>{
         setTimeout(()=>{
             resolve("Hello World");
@@ -323,7 +323,22 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
     console.log(result)
   }
 
-  showHelloWorld();
+  showHelloWorld();*/
+
+  //TASK-ZJ
+
+  function reduceNestedArray(arr: any[]):number {
+    return arr.reduce((sum, item)=>{
+        if(Array.isArray(item)){
+            return sum + reduceNestedArray(item);
+        }else if(typeof item === "number"){
+            return sum + item;
+        }
+    }, 0);
+
+  }
+
+  console.log(reduceNestedArray([1, [1,2,[4]]]))
 
   
 
