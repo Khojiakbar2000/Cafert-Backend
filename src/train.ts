@@ -327,7 +327,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //TASK-ZJ
 
-  function reduceNestedArray(arr: any[]):number {
+  /*function reduceNestedArray(arr: any[]):number {
     return arr.reduce((sum, item)=>{
         if(Array.isArray(item)){
             return sum + reduceNestedArray(item);
@@ -338,7 +338,23 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   }
 
-  console.log(reduceNestedArray([1, [1,2,[4]]]))
+  console.log(reduceNestedArray([1, [1,2,[4]]]))*/
+
+  //TASK-ZK
+
+  function printNumbers():void {
+  let count = 1
+
+  const intervalid = setInterval(()=>{
+    console.log(count);
+    count++
+    if(count > 5){
+        clearInterval(intervalid)
+    }
+  }, 1000)
+  }
+
+  printNumbers()
 
   
 
