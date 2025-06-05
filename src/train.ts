@@ -342,7 +342,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //TASK-ZK
 
-  function printNumbers():void {
+  /*function printNumbers():void {
   let count = 1
 
   const intervalid = setInterval(()=>{
@@ -354,7 +354,16 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
   }, 1000)
   }
 
-  printNumbers()
+  printNumbers()*/
+
+  //TASK-ZM
+
+  function reverseInteger(num: number): number{
+    const reversed = num.toString().split('').reverse().join('');
+    return parseInt(reversed)
+  }
+
+  console.log(reverseInteger(123456789))
 
   
 
