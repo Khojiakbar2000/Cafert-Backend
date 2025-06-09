@@ -358,12 +358,25 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //TASK-ZM
 
-  function reverseInteger(num: number): number{
+  /*function reverseInteger(num: number): number{
     const reversed = num.toString().split('').reverse().join('');
     return parseInt(reversed)
   }
 
-  console.log(reverseInteger(123456789))
+  console.log(reverseInteger(123456789))*/
+
+  //ZN-TASK
+
+  function rotateArray(arr: any[], n: number) : any[]{
+const length =  arr.length ;
+const cutIndex = length - n ;
+const endPart = arr.slice(cutIndex)
+const startPart = arr.slice(0, cutIndex)
+return [...endPart,...startPart]
+
+  }
+
+console.log(rotateArray([1,2,3,4,5,6],3))
 
   
 
