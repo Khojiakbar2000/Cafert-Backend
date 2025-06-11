@@ -367,7 +367,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3))*/
 
   //ZN-TASK
 
-  function rotateArray(arr: any[], n: number) : any[]{
+  /*function rotateArray(arr: any[], n: number) : any[]{
 const length =  arr.length ;
 const cutIndex = length - n ;
 const endPart = arr.slice(cutIndex)
@@ -376,7 +376,26 @@ return [...endPart,...startPart]
 
   }
 
-console.log(rotateArray([1,2,3,4,5,6],3))
+console.log(rotateArray([1,2,3,4,5,6],3))*/
+
+//TASK-ZO
+
+function areParenthesesBalanced(input: string): boolean {
+    let count = 0;
+
+    for (const char of input){
+        if(char === '('){
+            count ++;
+        }else if(char == ')'){
+            count --;
+        
+            if (count < 0 ) return false;
+        }
+    }
+return count === 0;
+}
+
+console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
 
   
 
