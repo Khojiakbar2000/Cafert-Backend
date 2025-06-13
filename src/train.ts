@@ -380,7 +380,7 @@ console.log(rotateArray([1,2,3,4,5,6],3))*/
 
 //TASK-ZO
 
-function areParenthesesBalanced(input: string): boolean {
+/*function areParenthesesBalanced(input: string): boolean {
     let count = 0;
 
     for (const char of input){
@@ -395,7 +395,25 @@ function areParenthesesBalanced(input: string): boolean {
 return count === 0;
 }
 
-console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
+console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));*/
+
+//TASK-ZP
+
+function countNumbersAndLetters(input: string): {number:number; letter: number}{
+    let number = 0;
+    let letter = 0;
+
+    for (const char of input){
+        if(/[0-9]/.test(char)){
+            number ++;
+        }else if (/[a-zA-Z]/.test(char)){
+            letter++;
+        }
+    }
+    return {number, letter}
+}
+
+console.log(countNumbersAndLetters("string152%\¥"))
 
   
 
