@@ -399,7 +399,7 @@ console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));*/
 
 //TASK-ZP
 
-function countNumbersAndLetters(input: string): {number:number; letter: number}{
+/*function countNumbersAndLetters(input: string): {number:number; letter: number}{
     let number = 0;
     let letter = 0;
 
@@ -413,7 +413,26 @@ function countNumbersAndLetters(input: string): {number:number; letter: number}{
     return {number, letter}
 }
 
-console.log(countNumbersAndLetters("string152%\¥"))
+console.log(countNumbersAndLetters("string152%\¥"))*/
+
+//TASK-ZQ
+function findDuplicate(arr:number[]):number[] {
+const count: {[key: number]: number} = {};
+const result:number[] = [];
+
+for (const num of arr){
+    count[num] = (count[num] || 0) + 1;
+}
+
+for (const key in count ){
+    if(count[key] >= 2){
+        result.push(Number(key));
+    }
+}
+return result;
+}
+
+console.log(findDuplicate([1,2,3,4,5,4,3,4]))
 
   
 
