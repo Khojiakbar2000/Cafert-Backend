@@ -416,7 +416,7 @@ console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));*/
 console.log(countNumbersAndLetters("string152%\¥"))*/
 
 //TASK-ZQ
-function findDuplicate(arr:number[]):number[] {
+/*function findDuplicate(arr:number[]):number[] {
 const count: {[key: number]: number} = {};
 const result:number[] = [];
 
@@ -432,7 +432,26 @@ for (const key in count ){
 return result;
 }
 
-console.log(findDuplicate([1,2,3,4,5,4,3,4]))
+console.log(findDuplicate([1,2,3,4,5,4,3,4]))*/
+
+//TASK-ZR 
+
+function singleNumber(nums: number[]):number {
+    const count: Record<number, number> = {};
+    for (const num of nums ) {
+        count[num] = (count[num] || 0)+1;
+    
+  
+    }
+    for (const num of nums) {
+        if (count [num] === 1) {
+            return num;
+        }
+    }
+    throw new Error("No single number found")
+}
+
+ console.log(singleNumber([4,2,1,2,1]))
 
   
 
