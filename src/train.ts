@@ -454,7 +454,7 @@ console.log(findDuplicate([1,2,3,4,5,4,3,4]))*/
 
 //TASK-ZS
 
-function firstUniqueCharIndex(s: string): number {
+/*function firstUniqueCharIndex(s: string): number {
     const count: Record<string, number> = {};
 
     for (const char of s ){
@@ -469,7 +469,29 @@ function firstUniqueCharIndex(s: string): number {
     return -1;
 }
 
-console.log(firstUniqueCharIndex("stamp"))
+console.log(firstUniqueCharIndex("stamp"))*/
+
+//TASK-ZT
+
+function sumOfUnique(nums: number[]): number{
+    const countMap: Record<number, number> = {};
+
+    for (const num  of nums){
+        countMap[num] = (countMap[num] || 0) + 1;
+
+    }
+
+    let sum = 0
+    for (const num in countMap) {
+        if(countMap[num]===1){
+            sum+= parseInt(num);
+        }
+    }
+
+    return sum;
+}
+
+console.log(sumOfUnique([1, 2, 3, 2]));
   
 
 
