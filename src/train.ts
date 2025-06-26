@@ -16,6 +16,8 @@
 
 console.log(getHighestIndex([5, 21, 12, 21, 8]))*/
 
+
+
 //TASK H:
 /*function getPositive(arr:number[]):string{
     return arr
@@ -473,7 +475,7 @@ console.log(firstUniqueCharIndex("stamp"))*/
 
 //TASK-ZT
 
-function sumOfUnique(nums: number[]): number{
+/*function sumOfUnique(nums: number[]): number{
     const countMap: Record<number, number> = {};
 
     for (const num  of nums){
@@ -491,7 +493,27 @@ function sumOfUnique(nums: number[]): number{
     return sum;
 }
 
-console.log(sumOfUnique([1, 2, 3, 2]));
+console.log(sumOfUnique([1, 2, 3, 2]));*/
+
+
+//TASK-ZU
+
+function moveZeros(nums:number[]): number[]{
+    const result: number[] = [];
+
+    for(const num of nums){
+        if(num !== 0) {
+            result.push(num)
+        }
+    }
+
+    while(result.length < nums.length){
+        result.push(0)
+    }
+    return result;
+}
+
+console.log(moveZeros([0, 1, 0, 3, 12]))
   
 
 
