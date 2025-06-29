@@ -498,7 +498,7 @@ console.log(sumOfUnique([1, 2, 3, 2]));*/
 
 //TASK-ZU
 
-function moveZeros(nums:number[]): number[]{
+/*function moveZeros(nums:number[]): number[]{
     const result: number[] = [];
 
     for(const num of nums){
@@ -513,7 +513,30 @@ function moveZeros(nums:number[]): number[]{
     return result;
 }
 
-console.log(moveZeros([0, 1, 0, 3, 12]))
+console.log(moveZeros([0, 1, 0, 3, 12]))*/
+
+//TASK-ZV
+
+function groupedBy<T>(items: T[], key: keyof T): Record<string, T[]>{
+    const result : Record<string, T[]> = {};
+
+    for (const item of items ){
+        const groupKey = String(item[key]);
+        if(!result[groupKey]){
+            result[groupKey] = [];
+        }
+
+        result[groupKey] = []
+    }
+    return result 
+}
+
+const data = [
+    {name: "John", age: 25, city: "New York"},
+    {name: "Steve", age:27, city:"Seoul"}
+]
+
+console.log(groupedBy(data, "name"))
   
 
 
