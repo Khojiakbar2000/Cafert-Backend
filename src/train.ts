@@ -517,7 +517,7 @@ console.log(moveZeros([0, 1, 0, 3, 12]))*/
 
 //TASK-ZV
 
-function groupedBy<T>(items: T[], key: keyof T): Record<string, T[]>{
+/*function groupedBy<T>(items: T[], key: keyof T): Record<string, T[]>{
     const result : Record<string, T[]> = {};
 
     for (const item of items ){
@@ -536,7 +536,22 @@ const data = [
     {name: "Steve", age:27, city:"Seoul"}
 ]
 
-console.log(groupedBy(data, "name"))
+console.log(groupedBy(data, "name"))*/
+
+//ZW-TASK
+function checkArray(arr:(string| number)[]): boolean {
+    let hasString = false;
+    let hasNumber = false;
+
+    for (const item of arr) {
+        if(typeof item === "string") hasString = true;
+        if(typeof item === "number") hasNumber = true;
+    }
+    return hasString && hasNumber;
+}
+
+console.log(checkArray(["hello", 123, "world"]))
+console.log(checkArray(["hello", "123", "world"]))
   
 
 
