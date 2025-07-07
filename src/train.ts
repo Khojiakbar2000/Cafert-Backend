@@ -539,7 +539,7 @@ const data = [
 console.log(groupedBy(data, "name"))*/
 
 //ZW-TASK
-function checkArray(arr:(string| number)[]): boolean {
+/*function checkArray(arr:(string| number)[]): boolean {
     let hasString = false;
     let hasNumber = false;
 
@@ -551,7 +551,37 @@ function checkArray(arr:(string| number)[]): boolean {
 }
 
 console.log(checkArray(["hello", 123, "world"]))
-console.log(checkArray(["hello", "123", "world"]))
+console.log(checkArray(["hello", "123", "world"]))*/
+
+function unflattenObject(obj: Record<string, any>){
+    const result: Record<string, any>={};
+
+    for (const key in obj){
+        const keys = key.split('.');
+        let current = result;
+
+        for (let i = 0; i< keys.length; i++){
+            const part = keys[i];
+            if(i === keys.length - 1){
+                current[part] =obj[key]
+            }else{
+                current[part] = current[part] || {};
+                current = current[part]
+            
+            }
+        }
+
+    }
+    return result;
+}
+console.log(unflattenObject({
+    "name": "Bob",
+    "contact.email": "bob@example.com",
+    "contact.phone":"1234567890",
+    "preferences.newsletter": true,
+    "preferences.theme": "dark"
+}))
+
   
 
 
