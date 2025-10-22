@@ -31,16 +31,25 @@ app.use("/products", express.static(path.resolve("uploads/products")));
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://72.60.236.97:3000',
+    'http://72.60.236.97',
+    'http://cafert.uz',
+    'https://cafert.uz'
+  ];
+  
+  app.use(
     cors({
       credentials: true,
-      origin: [
-        "http://localhost:3000",
-        "http://72.60.236.97:3000",
-        "http://72.60.236.97",
-        "http://cafert.uz",
-        "https://cafert.uz"
-      ],
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          console.warn(` Blocked CORS from: ${origin}`);
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
     })
   );
 app.use(cookieParser())
