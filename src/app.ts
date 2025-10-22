@@ -31,7 +31,18 @@ app.use("/products", express.static(path.resolve("uploads/products")));
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(cors({ credentials: true, origin: true }));
+app.use(
+    cors({
+      credentials: true,
+      origin: [
+        "http://localhost:3000",
+        "http://72.60.236.97:3000",
+        "http://72.60.236.97",
+        "http://cafert.uz",
+        "https://cafert.uz"
+      ],
+    })
+  );
 app.use(cookieParser())
 app.use(morgan(MORGAN_FORMAT))
 
