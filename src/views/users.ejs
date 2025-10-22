@@ -1,86 +1,119 @@
 <%- include('includes/header') %>
 
 <link rel="stylesheet" type="text/css" href="/css/users.css" />
+<link rel="stylesheet" type="text/css" href="/css/header.css" />
 
 <body>
   <div class="users-container">
-    <% if(!member) { %>
-    <div class="navigation-menu">
-      <ul class="nav justify-content-center">
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin/">Home</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/signup">SignUp</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/login">Login</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="users-frame" style="color: #dddddd">
-      <div class="board" style="font-size: 40px">Please login first!</div>
-    </div>
-
-    <% } else { %>
-    <div class="navigation-menu">
-      <ul class="nav justify-content-center">
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin/">Home</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
-        </li>
-        <li
-          class="nav-item"
-          style="cursor: pointer"
-          onclick="return confirm('Do you really want to logout?')"
-        >
-          <a class="nav-link" href="/admin/logout">Logout</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="users-frame">
-      <div class="board">
-        <div class="user-table">
-          <span class="header-name" style="margin-bottom: 30px"
-            >All Users List</span
-          >
-          <table class="table table-hover table-sm">
-            <thead class="thead-light">
-              <tr class="thead-light">
-                <th scope="col">No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-           
-              <% users.map(function(value, index){%>
-                <tbody style="background: white">
-                  <td><%= index+1 %></td>
-                  <td><%= value.memberNick %></td>
-                  <td><%= value.memberPhone %></td>
-                  <td style="width: 13%">
-                    <select class="spec-select member-status" id="<%= value._id%>">
-                      <option value="ACTIVE" <%= value.memberStatus === 'ACTIVE' ? 'selected': ''%> >ACTIVE</option>
-                      <option value="BLOCK" <%= value.memberStatus === 'BLOCK' ? 'selected': ''%> >BLOCK</option>
-                      <option value="DELETE"<%= value.memberStatus === 'DELETE' ? 'selected': ''%> >DELETE</option>
-                    </select>
-                  </td>
-                </tbody>
-             <% })%>
-            
-           
-          </table>
+    <% if (!member) { %>
+      <div class="login-required">
+        <div class="login-message">
+          <i class="fas fa-lock"></i>
+          <h2>Authentication Required</h2>
+          <p>Please login to access the users management panel.</p>
+          <a href="/admin/login" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i>
+            Login Now
+          </a>
         </div>
       </div>
-    </div>
+    <% } else { %>
+      <div class="users-frame">
+        <div class="board">
+          <!-- Page Header -->
+          <div class="page-header">
+            <div class="header-content">
+              <h1 class="page-title">
+                <i class="fas fa-users"></i>
+                Users Management
+              </h1>
+              <p class="page-subtitle">Manage all registered users and their status</p>
+            </div>
+            
+              </div>
+            </div>
+          </div>
+
+          <!-- Users Table -->
+          <div class="table-container">
+            <div class="table-header-section">
+              <h2 class="table-title">All Users List</h2>
+              <div class="table-actions">
+                <div class="search-box">
+                  <i class="fas fa-search"></i>
+                  <input type="text" placeholder="Search users..." id="userSearch" />
+                </div>
+                <button class="btn btn-secondary" id="refreshUsers">
+                  <i class="fas fa-sync-alt"></i>
+                  Refresh
+                </button>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table table-hover users-table">
+                <thead class="table-header">
+                  <tr>
+                    <th scope="col" class="col-number">#</th>
+                    <th scope="col" class="col-name">User Name</th>
+                    <th scope="col" class="col-phone">Phone Number</th>
+                    <th scope="col" class="col-status">Status</th>
+                   
+                  </tr>
+                </thead>
+                <tbody class="table-body">
+                  <% users.map(function(value, index) { %>
+                    <tr class="user-row" data-user-id="<%= value._id %>">
+                      <td class="user-number"><%= index + 1 %></td>
+                      <td class="user-name">
+                        <div class="user-info">
+                          <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                          </div>
+                          <div class="user-details">
+                            <span class="user-nickname"><%= value.memberNick %></span>
+            
+                          </div>
+                        </div>
+                      </td>
+                      <td class="user-phone">
+                        <div class="phone-info">
+                          <i class="fas fa-phone"></i>
+                          <span><%= value.memberPhone %></span>
+                        </div>
+                      </td>
+                      <td class="user-status">
+                        <select class="member-status" id="<%= value._id %>">
+                          <option value="ACTIVE" <%= value.memberStatus === 'ACTIVE' ? 'selected' : '' %>>Active</option>
+                          <option value="BLOCK" <%= value.memberStatus === 'BLOCK' ? 'selected' : '' %>>Blocked</option>
+                          <option value="DELETE" <%= value.memberStatus === 'DELETE' ? 'selected' : '' %>>Deleted</option>
+                        </select>
+                      </td>
+                   
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="table-footer">
+              <div class="table-info">
+                <span>Showing <%= users.length %> users</span>
+              </div>
+              <div class="table-pagination">
+                <button class="btn btn-sm btn-secondary" disabled>
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="page-info">Page 1 of 1</span>
+                <button class="btn btn-sm btn-secondary" disabled>
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% } %>
   </div>
 
@@ -88,3 +121,6 @@
 </body>
 
 <%- include('includes/footer') %>
+
+
+

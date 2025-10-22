@@ -58,6 +58,31 @@ productController.getProduct = async(req: ExtendedRequest, res: Response) =>{
   
   }
 }
+productController.getProductsByCategory = async (req: Request, res: Response) => {
+  try {
+    const { category } = req.params;
+    const { page = 1, limit = 20, order = "createdAt" } = req.query;
+
+    const products = await productService.getProductsByCategory({
+      category: category.toUpperCase(),
+      page: Number(page),
+      limit: Number(limit),
+      order: order as string
+    });
+
+    return res.status(200).json(products);
+  } catch (error) {
+    console.error("Error in getProductsByCategory:", error);
+    return res.status(500).json({ message: "Error fetching products by category" });
+  }
+}
+
+
+
+
+
+
+
 /** SSR */
 productController.getAllProducts = async (req: Request, res: Response) => {
     try {
@@ -88,6 +113,7 @@ productController.getAllProducts = async (req: Request, res: Response) => {
       await productService.createNewProduct(data);
 
       res.send(`<script> alert("Successfull creation"); window.location.replace('/admin/product/all') </script>`);
+      console.log("CreateProducts:",data )
       
 
      
@@ -96,7 +122,7 @@ productController.getAllProducts = async (req: Request, res: Response) => {
       console.log("Error, createNewProduct", err);
 
       const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-     res.send(`<script> alert("${message}"); window.location.replace('admin/product/all') </script>`);
+     res.send(`<script> alert("${message}"); window.location.replace('/admin/product/all') </script>`);
     
     }
   };

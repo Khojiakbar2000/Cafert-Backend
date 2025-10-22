@@ -98,7 +98,13 @@ class MemberService {
     .findOne({ memberType: MemberType.RESTAURANT }) 
     .exec();
     if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
-    console.log("before", input.memberPassword);
+    //console.log("before", input.memberPassword);
+    // Inside your service or controller before hashing:
+if (!input.memberPassword) {
+  throw new Error("Password is required for signup");
+}
+console.log("Password to hash:", input.memberPassword);
+
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
     console.log("after", input.memberPassword);
@@ -108,6 +114,7 @@ class MemberService {
       result.memberPassword = "";
       return result;
     } catch (err) {
+      console.error("MongoDB Create Error:", err)
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     } 
   }

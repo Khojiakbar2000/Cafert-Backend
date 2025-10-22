@@ -13,6 +13,7 @@ import { ViewGroup } from "../libs/enums/view.enum";
 
 
 
+
 class ProductService{
 private readonly productModel;
 public viewService;
@@ -85,6 +86,40 @@ return result;
 }
 
 
+public async getProductsByCategory(input: {
+    category: string;
+    page: number;
+    limit: number;
+    order: string;
+}): Promise<any> {
+    try {
+        const query: any = {
+            productCollection: input.category,
+            productStatus: ProductStatus.PROCESS
+        };
+
+        const products = await ProductModel.find(query)
+            .sort({ [input.order]: -1 })
+            .limit(input.limit)
+            .skip((input.page - 1) * input.limit)
+            .exec();
+
+        const total = await ProductModel.countDocuments(query);
+
+        return {
+            products,
+            total,
+            page: input.page,
+            limit: input.limit,
+            totalPages: Math.ceil(total / input.limit)
+        };
+
+    } catch (error) {
+        console.log("Error, getProductsByCategory:", error);
+        throw error;
+    }
+}
+
 
 //Increase Counts
 
@@ -121,6 +156,7 @@ public async updateChosenProduct(
    console.log("result:", result);
    return result;
 }
+
 }
 
 export default ProductService;

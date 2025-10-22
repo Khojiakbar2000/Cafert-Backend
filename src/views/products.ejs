@@ -1,228 +1,210 @@
 <%- include('includes/header') %>
-
+<link rel="stylesheet" type="text/css" href="/css/header.css" />
 <link rel="stylesheet" type="text/css" href="/css/products.css" />
 
 <body>
   <div class="products-container">
-    <div class="navigation-menu">
-      <ul class="nav justify-content-center">
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin/">Home</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
-        </li>
-        <li
-          class="nav-item"
-          style="cursor: pointer"
-          onclick="return confirm('Do you want to logout?')"
-        >
-          <a class="nav-link" href="/admin/logout">Logout</a>
-        </li>
-      </ul>
-    </div>
-
     <div class="restaurant-menu-frame">
       <div class="board">
-        <div class="dishes-table">
-          <span class="new-dish-txt" style="margin-bottom: 30px">
-            RESTAURANT MENU
-          </span>
-          <table class="table table-bordered table-hover">
-            <thead class="thead-light">
-              <tr class="thead-light">
-                <th scope="col">T/r</th>
+        <!-- Header Section -->
+        <div class="page-header">
+          <h1 class="page-title">Restaurant Menu</h1>
+          <button class="btn btn-primary new-product-btn" id="process-btn">
+            <i class="fas fa-plus"></i>
+            New Product
+          </button>
+        </div>
+
+        <!-- Products Table -->
+        <div class="table-container">
+          <table class="table table-bordered table-hover products-table">
+            <thead class="table-header">
+              <tr>
+                <th scope="col">#</th>
                 <th scope="col">Product Name</th>
-                <th scope="col">Product Type</th>
-                <th scope="col">Product Volume</th>
-                <th scope="col">Product Price</th>
-                <th scope="col">Product Left Count</th>
+                <th scope="col">Type</th>
+                <th scope="col">Volume/Size</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <!--  LOOP PRODUCTS: START  -->
+            <tbody>
               <% products.map(function(value, key){ %> 
-                <tbody style="background: white">
-                  <td><%= key + 1 %></td>
-                  <td><%=value.productName %></td>
-                  <td><%= value.productCollection %></td>
-                  <td>
-                    <%= value.productCollection === 'DRINK' ? value.productVolume :
-                  value.productSize %></td>
-                  <td><%= value.productPrice %></td>
-                  <td><% value.productLeftCount %></td>
-                  <td>
-                    <select class="spec-select new-product-status"
-                    id="<%= value._id %>">
-                      <option value="PAUSE" <%= value.productStatus === 'PAUSE' ? 'selected': '' %>>PAUSE</option>
-                      <option value="PROCESS"<%= value.productStatus === 'PROCESS' ? 'selected': '' %>>PROCESS</option>
-                      <option value="DELETE"<%= value.productStatus === 'DELETE' ? 'selected': '' %>>DELETE</option>
+                <tr class="product-row">
+                  <td class="row-number"><%= key + 1 %></td>
+                  <td class="product-name-cell"><%= value.productName %></td>
+                  <td class="product-type-cell"><%= value.productCollection %></td>
+                  <td class="product-volume-cell">
+                    <%= value.productCollection === 'DRINK' ? value.productVolume : value.productSize %>
+                  </td>
+                  <td class="product-price-cell">$<%= value.productPrice %></td>
+                  <td class="product-stock-cell"><%= value.productLeftCount %></td>
+                  <td class="product-status-cell">
+                    <select class="status-select" id="<%= value._id %>">
+                      <option value="PAUSE" <%= value.productStatus === 'PAUSE' ? 'selected': '' %>>Pause</option>
+                      <option value="PROCESS" <%= value.productStatus === 'PROCESS' ? 'selected': '' %>>Process</option>
+                      <option value="DELETE" <%= value.productStatus === 'DELETE' ? 'selected': '' %>>Delete</option>
                     </select>
                   </td>
-                </tbody> 
-                <% }) %>
-    
-            <!--  LOOP PRODUCTS: END  -->
+                </tr>
+              <% }) %>
+            </tbody>
           </table>
-          <div
-            class="long-input"
-            style="align-items: flex-end; margin-bottom: 25px"
-          >
-            <button class="btn btn-primary" id="process-btn">
-              New Product
-            </button>
-          </div>
         </div>
+
+        <!-- New Product Form -->
         <form
-        onsubmit="return validateForm()"
+          class="new-product-form"
+          style="display: none;"
+          onsubmit="return validateForm()"
           action="/admin/product/create"
           method="POST"
-          class="dish-container"
           enctype="multipart/form-data"
         >
-          <div class="long-input" style="display: flex; align-items: center">
-            <span class="new-dish-txt">NEW PRODUCT DETAIL</span>
-          </div>
-          <div class="login-input-frame">
-            <div class="long-input">
-              <label>Product Name</label>
-              <input
-                type="text"
-                placeholder="Name"
-                name="productName"
-                class="product-name"
-              />
-            </div>
-            <input
-              name="productStatus"
-              value="PAUSE"
-              class="product-status"
-              hidden
-            />
-          </div>
-          <div class="half-input-frame">
-            <div class="half-input">
-              <label>Product Price</label>
-              <input
-                type="number"
-                placeholder="Price"
-                name="productPrice"
-                class="product-price"
-              />
-            </div>
-            <div class="half-input">
-              <label>Product Left Counts</label>
-              <input
-                type="number"
-                placeholder="Counts"
-                name="productLeftCount"
-                class="product-left-count"
-              />
-            </div>
-          </div>
-          <div class="half-input-frame">
-            <div class="half-input">
-              <label>Product Type</label>
-              <select class="product-collection" name="productCollection">
-                <option value="DISH" selected>Dish</option>
-                <option value="SALAD">Salad</option>
-                <option value="DESSERT">Dessert</option>
-                <option value="DRINK">Drink</option>
-                <option value="OTHER">Other</option>
-              </select>
-            </div>
-
-            <div class="half-input" id="product-collection">
-              <label>Dish Volume</label>
-              <select class="product-size" name="productSize">
-                <option value="SMALL">Small</option>
-                <option value="NORMAL" selected>Normal</option>
-                <option value="LARGE">Large</option>
-                <option value="SET">Set</option>
-              </select>
-            </div>
-
-            <div class="half-input" id="product-volume" style="display: none">
-              <label>Drink Volume</label>
-              <select class="product-volume" name="productVolume">
-                <option value="0.5">0,5 liters</option>
-                <option value="1" selected>1 liters</option>
-                <option value="1.2">1,2 liters</option>
-                <option value="1.5">1,5 liters</option>
-                <option value="2">2 liters</option>
-              </select>
-            </div>
-          </div>
-          <div class="long-input">
-            <label>Product Description</label>
-            <textarea name="productDesc" class="product-desc"></textarea>
+          <div class="form-header">
+            <h2 class="form-title">New Product Details</h2>
           </div>
 
-          <div class="img-frame">
-            <label>Product Images</label>
-            <div class="media-frame">
-              <div class="upload-img-box">
-                <img src="/img/upload.svg" class="1" id="image-section-1" />
+          <!-- Basic Information -->
+          <div class="form-section">
+            <h3 class="section-title">Basic Information</h3>
+            
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label class="form-label">Product Name</label>
                 <input
-                  type="file"
-                  id="file"
-                  name="productImages"
-                  class="image-one"
+                  type="text"
+                  placeholder="Enter product name"
+                  name="productName"
+                  class="form-control product-name"
                   required
-                  onchange="previewFileHandler(this, 1)"
                 />
               </div>
-              <div class="upload-img-box">
-                <img src="/img/upload.svg" class="2" id="image-section-2" />
-                <input
-                  type="file"
-                  id="file"
-                  name="productImages"
-                  class="image-two"
-                  onchange="previewFileHandler(this, 2)"
-                />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Product Price</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-dollar-sign"></i>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    name="productPrice"
+                    class="form-control product-price"
+                    step="1"
+                    min="0"
+                    required
+                  />
+                </div>
               </div>
-              <div class="upload-img-box">
-                <img src="/img/upload.svg" class="3" id="image-section-3" />
-                <input
-                  type="file"
-                  id="file"
-                  name="productImages"
-                  class="image-three"
-                  onchange="previewFileHandler(this, 3)"
-                />
+              <div class="form-group">
+                <label class="form-label">Stock Count</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-boxes"></i>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    name="productLeftCount"
+                    class="form-control product-left-count"
+                    min="0"
+                    required
+                  />
+                </div>
               </div>
-              <div class="upload-img-box">
-                <img src="/img/upload.svg" class="4" id="image-section-4" />
-                <input
-                  type="file"
-                  id="file"
-                  name="productImages"
-                  class="image-four"
-                  onchange="previewFileHandler(this, 4)"
-                />
-              </div>
-              <div class="upload-img-box">
-                <img src="/img/upload.svg" class="5" id="image-section-5" />
-                <input
-                  type="file"
-                  id="file"
-                  name="productImages"
-                  class="image-five"
-                  onchange="previewFileHandler(this, 5)"
-                />
-              </div>
-              <input name="restaurantIid" class="restaurant-id" hidden />
             </div>
           </div>
 
-          <div class="operation-buttons">
-            <button class="btn btn-danger" id="cancel-btn">Cancel</button>
+          <!-- Product Type and Size -->
+          <div class="form-section">
+            <h3 class="section-title">Product Classification</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Product Type</label>
+                <select class="form-control product-collection" name="productCollection">
+                  <option value="DISH" selected>Dish</option>
+                  <option value="SALAD">Salad</option>
+                  <option value="DESSERT">Dessert</option>
+                  <option value="DRINK">Drink</option>
+                  <option value="COFFEE">Coffee</option>
+                  <option value="OTHER">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="product-collection">
+                <label class="form-label">Dish Size</label>
+                <select class="form-control product-size" name="productSize">
+                  <option value="SMALL">Small</option>
+                  <option value="NORMAL" selected>Normal</option>
+                  <option value="LARGE">Large</option>
+                  <option value="SET">Set</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="product-volume" style="display: none">
+                <label class="form-label">Drink Volume</label>
+                <select class="form-control product-volume" name="productVolume">
+                  <option value="0.5">0.5 liters</option>
+                  <option value="1" selected>1 liter</option>
+                  <option value="1.2">1.2 liters</option>
+                  <option value="1.5">1.5 liters</option>
+                  <option value="2">2 liters</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-section">
+            <h3 class="section-title">Product Description</h3>
+            <div class="form-group full-width">
+              <label class="form-label">Description</label>
+              <textarea 
+                name="productDesc" 
+                class="form-control product-desc"
+                placeholder="Enter product description..."
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Product Images -->
+          <div class="form-section">
+            <h3 class="section-title">Product Images</h3>
+            <div class="image-upload-grid">
+              <% for (let i = 1; i <= 5; i++) { %>
+                <div class="upload-img-box">
+                  <img src="/img/upload.svg" id="image-preview-<%= i %>" class="preview-image" />
+                  <input
+                    type="file"
+                    name="productImages"
+                    class="image-input"
+                    accept="image/*"
+                    <%- `onchange="previewFileHandler(this, ${i})"` %>
+
+                    <%= i === 1 ? 'required' : '' %>
+                  />
+                </div>
+                
+              <% } %>
+            </div>
+            <input name="restaurantIid" class="restaurant-id" hidden />
+          </div>
+          
+            
+     
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancel-btn">
+              <i class="fas fa-times"></i>
+              Cancel
+            </button>
             <button type="submit" class="btn btn-primary" id="create-btn">
-              Create
+              <i class="fas fa-save"></i>
+              Create Product
             </button>
           </div>
         </form>
@@ -230,7 +212,19 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="/js/products.js"></script>
+  <%- include('includes/footer') %>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/products.js"></script>
 </body>
 
-<%- include('includes/footer') %>
+
+
+
+
+
+
+  
+
+
+
+

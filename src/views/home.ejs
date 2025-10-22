@@ -1,127 +1,470 @@
 <%- include('includes/header') %>
 
-<link rel="stylesheet" type="text/css" href="/css/home.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-<body>
-  <div class="home-container">
-    <div class="navigation-menu">
-      <ul class="nav justify-content-center">
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin">Home</a>
-        </li>
-        <% if(!member) { %>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/signup">Signup</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/login">Login</a>
-        </li>
-        <% } else { %>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
-        </li>
-        <li
-          class="nav-item"
-          style="cursor: pointer"
-          onclick="return confirm('Do you want to logout?')"
-        >
-          <a class="nav-link" href="/admin/logout">Logout</a>
-        </li>
-        <% } %>
-      </ul>
-    </div>
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <div class="animation-frame">
-      <div class="animation-wrapper">
-        <div class="sphere-animation">
-          <svg class="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
-            <defs>
-              <linearGradient
-                id="sphereGradient"
-                x1="5%"
-                x2="5%"
-                y1="0%"
-                y2="15%"
-              >
-                <stop stop-color="#373734" offset="0%" />
-                <stop stop-color="#242423" offset="50%" />
-                <stop stop-color="#0D0D0C" offset="100%" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M361.604 361.238c-24.407 24.408-51.119 37.27-59.662 28.727-8.542-8.543 4.319-35.255 28.726-59.663 24.408-24.407 51.12-37.269 59.663-28.726 8.542 8.543-4.319 35.255-28.727 59.662z"
-            />
-            <path
-              d="M360.72 360.354c-35.879 35.88-75.254 54.677-87.946 41.985-12.692-12.692 6.105-52.067 41.985-87.947 35.879-35.879 75.254-54.676 87.946-41.984 12.692 12.692-6.105 52.067-41.984 87.946z"
-            />
-            <path
-              d="M357.185 356.819c-44.91 44.91-94.376 68.258-110.485 52.149-16.11-16.11 7.238-65.575 52.149-110.485 44.91-44.91 94.376-68.259 110.485-52.15 16.11 16.11-7.239 65.576-52.149 110.486z"
-            />
-            <path
-              d="M350.998 350.632c-53.21 53.209-111.579 81.107-130.373 62.313-18.794-18.793 9.105-77.163 62.314-130.372 53.209-53.21 111.579-81.108 130.373-62.314 18.794 18.794-9.105 77.164-62.314 130.373z"
-            />
-            <path
-              d="M343.043 342.677c-59.8 59.799-125.292 91.26-146.283 70.268-20.99-20.99 10.47-86.483 70.269-146.282 59.799-59.8 125.292-91.26 146.283-70.269 20.99 20.99-10.47 86.484-70.27 146.283z"
-            />
-            <path
-              d="M334.646 334.28c-65.169 65.169-136.697 99.3-159.762 76.235-23.065-23.066 11.066-94.593 76.235-159.762s136.697-99.3 159.762-76.235c23.065 23.065-11.066 94.593-76.235 159.762z"
-            />
-            <path
-              d="M324.923 324.557c-69.806 69.806-146.38 106.411-171.031 81.76-24.652-24.652 11.953-101.226 81.759-171.032 69.806-69.806 146.38-106.411 171.031-81.76 24.652 24.653-11.953 101.226-81.759 171.032z"
-            />
-            <path
-              d="M312.99 312.625c-73.222 73.223-153.555 111.609-179.428 85.736-25.872-25.872 12.514-106.205 85.737-179.428s153.556-111.609 179.429-85.737c25.872 25.873-12.514 106.205-85.737 179.429z"
-            />
-            <path
-              d="M300.175 299.808c-75.909 75.909-159.11 115.778-185.837 89.052-26.726-26.727 13.143-109.929 89.051-185.837 75.908-75.908 159.11-115.778 185.837-89.051 26.726 26.726-13.143 109.928-89.051 185.836z"
-            />
-            <path
-              d="M284.707 284.34c-77.617 77.617-162.303 118.773-189.152 91.924-26.848-26.848 14.308-111.534 91.924-189.15C265.096 109.496 349.782 68.34 376.63 95.188c26.849 26.849-14.307 111.535-91.923 189.151z"
-            />
-            <path
-              d="M269.239 267.989c-78.105 78.104-163.187 119.656-190.035 92.807-26.849-26.848 14.703-111.93 92.807-190.035 78.105-78.104 163.187-119.656 190.035-92.807 26.849 26.848-14.703 111.93-92.807 190.035z"
-            />
-            <path
-              d="M252.887 252.52C175.27 330.138 90.584 371.294 63.736 344.446 36.887 317.596 78.043 232.91 155.66 155.293 233.276 77.677 317.962 36.521 344.81 63.37c26.85 26.848-14.307 111.534-91.923 189.15z"
-            />
-            <path
-              d="M236.977 236.61C161.069 312.52 77.867 352.389 51.14 325.663c-26.726-26.727 13.143-109.928 89.052-185.837 75.908-75.908 159.11-115.777 185.836-89.05 26.727 26.726-13.143 109.928-89.051 185.836z"
-            />
-            <path
-              d="M221.067 220.7C147.844 293.925 67.51 332.31 41.639 306.439c-25.873-25.873 12.513-106.206 85.736-179.429C200.6 53.786 280.931 15.4 306.804 41.272c25.872 25.873-12.514 106.206-85.737 179.429z"
-            />
-            <path
-              d="M205.157 204.79c-69.806 69.807-146.38 106.412-171.031 81.76-24.652-24.652 11.953-101.225 81.759-171.031 69.806-69.807 146.38-106.411 171.031-81.76 24.652 24.652-11.953 101.226-81.759 171.032z"
-            />
-            <path
-              d="M189.247 188.881c-65.169 65.169-136.696 99.3-159.762 76.235-23.065-23.065 11.066-94.593 76.235-159.762s136.697-99.3 159.762-76.235c23.065 23.065-11.066 94.593-76.235 159.762z"
-            />
-            <path
-              d="M173.337 172.971c-59.799 59.8-125.292 91.26-146.282 70.269-20.991-20.99 10.47-86.484 70.268-146.283 59.8-59.799 125.292-91.26 146.283-70.269 20.99 20.991-10.47 86.484-70.269 146.283z"
-            />
-            <path
-              d="M157.427 157.061c-53.209 53.21-111.578 81.108-130.372 62.314-18.794-18.794 9.104-77.164 62.313-130.373 53.21-53.209 111.58-81.108 130.373-62.314 18.794 18.794-9.105 77.164-62.314 130.373z"
-            />
-            <path
-              d="M141.517 141.151c-44.91 44.91-94.376 68.259-110.485 52.15-16.11-16.11 7.239-65.576 52.15-110.486 44.91-44.91 94.375-68.258 110.485-52.15 16.109 16.11-7.24 65.576-52.15 110.486z"
-            />
-            <path
-              d="M125.608 125.241c-35.88 35.88-75.255 54.677-87.947 41.985-12.692-12.692 6.105-52.067 41.985-87.947C115.525 43.4 154.9 24.603 167.592 37.295c12.692 12.692-6.105 52.067-41.984 87.946z"
-            />
-            <path
-              d="M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726-8.542-8.543 4.319-35.255 28.727-59.662 24.407-24.408 51.12-37.27 59.662-28.727 8.543 8.543-4.319 35.255-28.726 59.663z"
-            />
-          </svg>
-        </div>
+<style>
+  body {
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    overflow-x: hidden;
+    cursor: grab;
+  }
+  
+  body:active {
+    cursor: grabbing;
+  }
+  
+  .earth-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  #earth-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  .content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  .brand-title {
+    font-size: 4.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    background: linear-gradient(-45deg, #DEB887, #CD853F, #D2691E, #8B4513, #DEB887);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 4s ease infinite;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(222, 184, 135, 0.5);
+  }
+  
+  .brand-subtitle {
+    font-size: 1.5rem;
+    color: #bdc3c7;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(189, 195, 199, 0.3);
+  }
+  
+  .stats-section {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .stat-card {
+    background: rgba(44, 62, 80, 0.8);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  
+  .stat-card i {
+    font-size: 2.5rem;
+    color: #DEB887;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(222, 184, 135, 0.5);
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #bdc3c7;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  
+  .controls-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(44, 62, 80, 0.8);
+    border-radius: 10px;
+    padding: 15px;
+    color: #bdc3c7;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 20;
+    pointer-events: none;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @media (max-width: 768px) {
+    .brand-title { font-size: 2.5rem; }
+    .brand-subtitle { font-size: 1.2rem; }
+    .stats-section { gap: 1.5rem; }
+    .stat-card { padding: 1rem 1.5rem; min-width: 120px; }
+    .stat-card i { font-size: 2rem; }
+    .stat-number { font-size: 1.5rem; }
+    .controls-info { display: none; }
+  }
+</style>
+
+<div class="earth-container">
+  <canvas id="earth-canvas"></canvas>
+  
+  <div class="content-overlay">
+    <h1 class="brand-title">Cafert Admin</h1>
+    <p class="brand-subtitle">Global Coffee Management System</p>
+    <div class="stats-section">
+      <div class="stat-card">
+        <i class="fas fa-coffee"></i>
+        <span class="stat-number">150+</span>
+        <span class="stat-label">Products</span>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <span class="stat-number">1.2K</span>
+        <span class="stat-label">Customers</span>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-globe"></i>
+        <span class="stat-number">25+</span>
+        <span class="stat-label">Countries</span>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-chart-line"></i>
+        <span class="stat-number">98%</span>
+        <span class="stat-label">Satisfaction</span>
       </div>
     </div>
   </div>
+  
+  <div class="controls-info">
+    <div>🖱️ Drag to rotate</div>
+    <div>🔍 Scroll to zoom</div>
+    <div>📱 Touch to interact</div>
+  </div>
+</div>
 
-  <script type="text/javascript" src="/js/home.js"></script>
-</body>
+<script>
+  // Highly Interactive Earth Animation
+  document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('earth-canvas');
+    const renderer = new THREE.WebGLRenderer({ 
+      canvas: canvas, 
+      alpha: true, 
+      antialias: true,
+      powerPreference: "high-performance"
+    });
+    
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    
+    // Initial camera position
+    camera.position.z = 20;
+
+    // Create Earth with high-quality texture
+    const geometry = new THREE.SphereGeometry(8, 128, 128);
+    const textureLoader = new THREE.TextureLoader();
+    
+    // Load Earth texture
+    const earthTexture = textureLoader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg');
+    const material = new THREE.MeshPhongMaterial({ 
+      map: earthTexture, 
+      shininess: 25,
+      specular: 0x333333
+    });
+    
+    const earth = new THREE.Mesh(geometry, material);
+    scene.add(earth);
+
+    // Enhanced lighting setup
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    directionalLight.position.set(20, 20, 20);
+    
+    const rimLight = new THREE.DirectionalLight(0xDEB887, 0.4);
+    rimLight.position.set(-15, -15, -15);
+
+    scene.add(ambientLight);
+    scene.add(directionalLight);
+    scene.add(rimLight);
+
+    // Create massive star field
+    const starsGeometry = new THREE.BufferGeometry();
+    const starsMaterial = new THREE.PointsMaterial({ 
+      color: 0xffffff, 
+      size: 0.15,
+      transparent: true,
+      opacity: 0.8
+    });
+    
+    const starsVertices = [];
+    for (let i = 0; i < 5000; i++) {
+      starsVertices.push(
+        Math.random() * 4000 - 2000,
+        Math.random() * 4000 - 2000,
+        Math.random() * 4000 - 2000
+      );
+    }
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starsVertices, 3));
+    const stars = new THREE.Points(starsGeometry, starsMaterial);
+    scene.add(stars);
+
+    // Add atmosphere glow
+    const atmosphereGeometry = new THREE.SphereGeometry(8.3, 64, 64);
+    const atmosphereMaterial = new THREE.MeshBasicMaterial({
+      color: 0x4a90e2,
+      transparent: true,
+      opacity: 0.1
+    });
+    const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+    scene.add(atmosphere);
+
+    // Interactive controls
+    let isMouseDown = false;
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    let currentRotationX = 0;
+    let currentRotationY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    
+    // Mouse events
+    canvas.addEventListener('mousedown', (event) => {
+      isMouseDown = true;
+      isDragging = false;
+      dragStartX = event.clientX;
+      dragStartY = event.clientY;
+      document.body.style.cursor = 'grabbing';
+    });
+    
+    canvas.addEventListener('mousemove', (event) => {
+      if (isMouseDown) {
+        const deltaX = event.clientX - dragStartX;
+        const deltaY = event.clientY - dragStartY;
+        
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+          isDragging = true;
+        }
+        
+        if (isDragging) {
+          targetRotationY += deltaX * 0.01;
+          targetRotationX += deltaY * 0.01;
+          
+          // Limit vertical rotation
+          targetRotationX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, targetRotationX));
+          
+          dragStartX = event.clientX;
+          dragStartY = event.clientY;
+        }
+      }
+    });
+    
+    canvas.addEventListener('mouseup', () => {
+      isMouseDown = false;
+      isDragging = false;
+      document.body.style.cursor = 'grab';
+    });
+    
+    canvas.addEventListener('mouseleave', () => {
+      isMouseDown = false;
+      isDragging = false;
+      document.body.style.cursor = 'grab';
+    });
+
+    // Touch events for mobile
+    canvas.addEventListener('touchstart', (event) => {
+      event.preventDefault();
+      isMouseDown = true;
+      isDragging = false;
+      const touch = event.touches[0];
+      dragStartX = touch.clientX;
+      dragStartY = touch.clientY;
+    });
+    
+    canvas.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+      if (isMouseDown && event.touches.length === 1) {
+        const touch = event.touches[0];
+        const deltaX = touch.clientX - dragStartX;
+        const deltaY = touch.clientY - dragStartY;
+        
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+          isDragging = true;
+        }
+        
+        if (isDragging) {
+          targetRotationY += deltaX * 0.01;
+          targetRotationX += deltaY * 0.01;
+          
+          // Limit vertical rotation
+          targetRotationX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, targetRotationX));
+          
+          dragStartX = touch.clientX;
+          dragStartY = touch.clientY;
+        }
+      }
+    });
+    
+    canvas.addEventListener('touchend', () => {
+      isMouseDown = false;
+      isDragging = false;
+    });
+
+    // Zoom functionality
+    let targetZoom = 20;
+    let currentZoom = 20;
+    
+    canvas.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const zoomSpeed = 0.1;
+      targetZoom += event.deltaY * zoomSpeed;
+      targetZoom = Math.max(10, Math.min(50, targetZoom)); // Limit zoom range
+    });
+
+    // Pinch zoom for mobile
+    let initialDistance = 0;
+    let initialZoom = 0;
+    
+    canvas.addEventListener('touchstart', (event) => {
+      if (event.touches.length === 2) {
+        const touch1 = event.touches[0];
+        const touch2 = event.touches[1];
+        initialDistance = Math.sqrt(
+          Math.pow(touch2.clientX - touch1.clientX, 2) +
+          Math.pow(touch2.clientY - touch1.clientY, 2)
+        );
+        initialZoom = targetZoom;
+      }
+    });
+    
+    canvas.addEventListener('touchmove', (event) => {
+      if (event.touches.length === 2) {
+        const touch1 = event.touches[0];
+        const touch2 = event.touches[1];
+        const currentDistance = Math.sqrt(
+          Math.pow(touch2.clientX - touch1.clientX, 2) +
+          Math.pow(touch2.clientY - touch1.clientY, 2)
+        );
+        
+        const zoomDelta = (initialDistance - currentDistance) * 0.01;
+        targetZoom = initialZoom + zoomDelta;
+        targetZoom = Math.max(10, Math.min(50, targetZoom));
+      }
+    });
+
+    // Animation loop
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.01;
+      
+      // Smooth rotation interpolation
+      currentRotationX += (targetRotationX - currentRotationX) * 0.1;
+      currentRotationY += (targetRotationY - currentRotationY) * 0.1;
+      
+      earth.rotation.x = currentRotationX;
+      earth.rotation.y = currentRotationY;
+      
+      // Smooth zoom interpolation
+      currentZoom += (targetZoom - currentZoom) * 0.1;
+      camera.position.z = currentZoom;
+      
+      // Auto-rotation when not interacting
+      if (!isDragging && !isMouseDown) {
+        targetRotationY += 0.002;
+      }
+      
+      // Stars rotation
+      stars.rotation.y += 0.0002;
+      stars.rotation.x += 0.0001;
+      
+      // Atmosphere pulse
+      atmosphere.material.opacity = 0.1 + Math.sin(time * 2) * 0.05;
+      
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Responsive handling
+    window.addEventListener('resize', () => {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(newWidth, newHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    });
+
+    // Performance optimization
+    let isVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+      });
+    });
+    observer.observe(canvas);
+  });
+</script>
 
 <%- include('includes/footer') %>

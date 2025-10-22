@@ -35,6 +35,7 @@ class OrderService {
      const orderId = newOrder._id;
      console.log("orderId:", orderId);
      await this.recordOrderItems(orderId, input);
+     console.log("Creating order with data:", input);
      return newOrder;
     }catch(err){
     console.log("Error, model: createdOrder:", err)

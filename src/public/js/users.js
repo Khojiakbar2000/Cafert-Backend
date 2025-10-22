@@ -1,3 +1,5 @@
+import './style.css';
+
 console.log("Users frontend javascript file");
 
 $(function(){

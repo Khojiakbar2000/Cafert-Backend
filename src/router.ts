@@ -22,6 +22,7 @@ router.get("/member/top-users", memberController.getTopUsers)
 /** Product **/
 router.get("/product/all", productController.getProducts);
 router.get("/product/:id", memberController.retrieveAuth,productController.getProduct )
+router.get("/product/category/:category", productController.getProductsByCategory)
 
 /** Order **/
 router.post("/order/create", memberController.verifyAuth, orderController.createOrder)

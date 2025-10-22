@@ -1,1 +1,108 @@
+/**</html>**/
+
+</div> <!-- End of cafert-container -->
+    
+<!-- Footer -->
+<footer class="bg-dark text-light py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h5><i class="fas fa-coffee"></i> Cafert Admin</h5>
+                <p class="mb-0">Professional coffee shop management system</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="mb-0">&copy; 2024 Cafert. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios@1.4.0/dist/axios.min.js"></script>
+
+<!-- Custom Admin JS -->
+<script>
+    // Cafert Admin Utilities
+    const CafertAdmin = {
+        // Show loading state
+        showLoading: function(element) {
+            if (element) {
+                element.innerHTML = '<div class="cafert-spinner mx-auto"></div>';
+            }
+        },
+        
+        // Show notification
+        showNotification: function(message, type = 'info') {
+            const alertClass = type === 'success' ? 'alert-cafert-success' : 
+                             type === 'danger' ? 'alert-cafert-danger' : 'alert-cafert-info';
+            
+            const alert = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            
+            // Add to page
+            const container = document.querySelector('.cafert-container');
+            if (container) {
+                container.insertAdjacentHTML('afterbegin', alert);
+            }
+        },
+        
+        // Format currency
+        formatCurrency: function(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(amount);
+        },
+        
+        // Validate form
+        validateForm: function(formId) {
+            const form = document.getElementById(formId);
+            if (!form) return false;
+            
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+            });
+            
+            return isValid;
+        }
+    };
+    
+    // Initialize admin features
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add coffee theme classes
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.classList.add('btn-cafert');
+        });
+        
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.classList.add('form-control-cafert');
+        });
+        
+        // Add coffee icon to page title
+        const title = document.querySelector('title');
+        if (title && !title.textContent.includes('☕')) {
+            title.textContent = '☕ ' + title.textContent;
+        }
+    });
+</script>
+</body>
 </html>
