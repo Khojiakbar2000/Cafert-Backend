@@ -34,7 +34,7 @@ app.use("/products", express.static(path.resolve("uploads/products")));
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 const allowedOrigins = [
-  'http://72.60.236.97:3000',
+  'http://72.60.236.97:3003',
     'http://localhost:3000',
     'http://72.60.236.97:3000',
     'http://72.60.236.97',
