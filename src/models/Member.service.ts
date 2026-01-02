@@ -158,4 +158,6 @@ console.log("Password to hash:", input.memberPassword);
     }
 }
 
+
+
 export default MemberService;

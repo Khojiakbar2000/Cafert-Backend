@@ -13,6 +13,8 @@ import session from 'express-session';
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from './libs/types/common'
 
+
+
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
     uri: String(process.env.MONGO_URL),
@@ -32,9 +34,11 @@ app.use("/products", express.static(path.resolve("uploads/products")));
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 const allowedOrigins = [
+  'http://72.60.236.97:3000',
     'http://localhost:3000',
     'http://72.60.236.97:3000',
     'http://72.60.236.97',
+    'http://localhost:3003', 
     'http://cafert.uz',
     'https://cafert.uz'
   ];

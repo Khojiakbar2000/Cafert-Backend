@@ -3,7 +3,6 @@ import { NextFunction, Request, Response, json } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { ExtendedRequest, LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
-import { MemberType } from "../libs/enums/member.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import AuthService from "../models/Auth.service";
 import { AUTH_TIMER } from "../libs/config";
@@ -164,5 +163,9 @@ memberController.retrieveAuth = async (
     next();
   }
 }
+
+
+
+
 
 export default memberController;

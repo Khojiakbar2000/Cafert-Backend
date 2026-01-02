@@ -10,7 +10,8 @@
     "baseUrl": "./",
     "paths": {
       "*": ["node_modules/*"]
-    }
+    },
+    "removeComments": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
